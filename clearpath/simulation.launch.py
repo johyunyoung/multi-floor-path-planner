@@ -23,13 +23,14 @@ from launch.actions import (
     SetEnvironmentVariable,
 )
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
+from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
-from launch_ros.substitutions import FindPackageShare
 
 
 CUSTOM_WORLDS_DIR = '/home/jo/clearpath_ws/clearpath/worlds'
 SETUP_PATH = '/home/jo/clearpath_ws/clearpath/'
+
+RVIZ_DEFAULT_CONFIG = '/home/jo/clearpath_ws/clearpath/rviz/navigation.rviz'
 
 ARGUMENTS = [
     DeclareLaunchArgument(
@@ -39,6 +40,8 @@ ARGUMENTS = [
     DeclareLaunchArgument('y',   default_value='0.0'),
     DeclareLaunchArgument('z',   default_value='0.3'),
     DeclareLaunchArgument('yaw', default_value='0.0'),
+    DeclareLaunchArgument('rviz_config', default_value=RVIZ_DEFAULT_CONFIG,
+        description='Path to RViz config file.'),
 ]
 
 
@@ -47,7 +50,6 @@ def launch_setup(context, *args, **kwargs):
 
     pkg_clearpath_gz = get_package_share_directory('clearpath_gz')
     pkg_ros_gz_sim   = get_package_share_directory('ros_gz_sim')
-    pkg_clearpath_viz = get_package_share_directory('clearpath_viz')
 
     # ── Resource path ────────────────────────────────────────────────────────
     # Custom worlds dir is prepended so it takes priority over built-in worlds.
@@ -105,14 +107,20 @@ def launch_setup(context, *args, **kwargs):
     )
 
     # ── RViz ─────────────────────────────────────────────────────────────────
-    rviz = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            PathJoinSubstitution([pkg_clearpath_viz, 'launch', 'view_robot.launch.py'])
-        ),
-        launch_arguments=[
-            ('namespace',    'a200_0000'),
-            ('use_sim_time', 'true'),
+    rviz_config = LaunchConfiguration('rviz_config').perform(context)
+
+    rviz = Node(
+        package='rviz2',
+        executable='rviz2',
+        name='rviz2',
+        namespace='a200_0000',
+        arguments=['-d', rviz_config],
+        parameters=[{'use_sim_time': True}],
+        remappings=[
+            ('/tf', 'tf'),
+            ('/tf_static', 'tf_static'),
         ],
+        output='screen',
     )
 
     return [set_resource_path, gz_sim, clock_bridge, robot_spawn, rviz]

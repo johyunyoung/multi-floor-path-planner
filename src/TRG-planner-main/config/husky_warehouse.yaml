@@ -1,0 +1,21 @@
+isVerbose: true
+timer:
+  graphRate: 5.0
+  planningRate: 10.0
+map:
+  isPrebuiltMap: false
+  prebuiltMapPath: ""
+  isVoxelize: true
+  voxelSize: 0.2
+trg:
+  isPrebuiltTRG: false
+  prebuiltTRGPath: ""
+  isUpdate: true
+  expandDist: 0.6
+  robotSize: 0.5
+  sampleNum: 15
+  heightThreshold: 0.2
+  collisionThreshold: 0.15
+  updateCollisionThreshold: 0.15
+  safetyFactor: 3.0
+  goalTolerance: 0.8
