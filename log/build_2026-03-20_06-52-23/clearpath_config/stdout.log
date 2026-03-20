@@ -1,0 +1,363 @@
+running egg_info
+creating ../../build/clearpath_config/clearpath_config.egg-info
+writing ../../build/clearpath_config/clearpath_config.egg-info/PKG-INFO
+writing dependency_links to ../../build/clearpath_config/clearpath_config.egg-info/dependency_links.txt
+writing requirements to ../../build/clearpath_config/clearpath_config.egg-info/requires.txt
+writing top-level names to ../../build/clearpath_config/clearpath_config.egg-info/top_level.txt
+writing manifest file '../../build/clearpath_config/clearpath_config.egg-info/SOURCES.txt'
+reading manifest file '../../build/clearpath_config/clearpath_config.egg-info/SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file '../../build/clearpath_config/clearpath_config.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config
+copying clearpath_config/__init__.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config
+copying clearpath_config/clearpath_config.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config
+creating /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common
+copying clearpath_config/common/__init__.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common
+creating /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types
+copying clearpath_config/common/types/rmw_implementation.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types
+copying clearpath_config/common/types/accessory.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types
+copying clearpath_config/common/types/material.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types
+copying clearpath_config/common/types/port.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types
+copying clearpath_config/common/types/username.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types
+copying clearpath_config/common/types/domain_id.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types
+copying clearpath_config/common/types/namespace.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types
+copying clearpath_config/common/types/__init__.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types
+copying clearpath_config/common/types/serial_number.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types
+copying clearpath_config/common/types/ip.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types
+copying clearpath_config/common/types/platform.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types
+copying clearpath_config/common/types/hostname.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types
+copying clearpath_config/common/types/list.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types
+copying clearpath_config/common/types/file.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types
+copying clearpath_config/common/types/package_path.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types
+copying clearpath_config/common/types/discovery.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types
+copying clearpath_config/common/types/config.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types
+creating /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/utils
+copying clearpath_config/common/utils/yaml.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/utils
+copying clearpath_config/common/utils/__init__.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/utils
+copying clearpath_config/common/utils/dictionary.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/utils
+creating /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/links
+copying clearpath_config/links/__init__.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/links
+copying clearpath_config/links/links.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/links
+creating /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/links/types
+copying clearpath_config/links/types/box.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/links/types
+copying clearpath_config/links/types/__init__.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/links/types
+copying clearpath_config/links/types/mesh.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/links/types
+copying clearpath_config/links/types/link.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/links/types
+copying clearpath_config/links/types/frame.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/links/types
+copying clearpath_config/links/types/cylinder.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/links/types
+copying clearpath_config/links/types/sphere.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/links/types
+creating /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/manipulators
+copying clearpath_config/manipulators/manipulators.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/manipulators
+copying clearpath_config/manipulators/__init__.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/manipulators
+creating /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/manipulators/types
+copying clearpath_config/manipulators/types/lifts.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/manipulators/types
+copying clearpath_config/manipulators/types/grippers.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/manipulators/types
+copying clearpath_config/manipulators/types/__init__.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/manipulators/types
+copying clearpath_config/manipulators/types/manipulator.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/manipulators/types
+copying clearpath_config/manipulators/types/arms.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/manipulators/types
+creating /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/mounts
+copying clearpath_config/mounts/__init__.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/mounts
+copying clearpath_config/mounts/mounts.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/mounts
+creating /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/mounts/types
+copying clearpath_config/mounts/types/post.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/mounts/types
+copying clearpath_config/mounts/types/flir_ptu.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/mounts/types
+copying clearpath_config/mounts/types/__init__.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/mounts/types
+copying clearpath_config/mounts/types/fath_pivot.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/mounts/types
+copying clearpath_config/mounts/types/sick.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/mounts/types
+copying clearpath_config/mounts/types/disk.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/mounts/types
+copying clearpath_config/mounts/types/pacs.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/mounts/types
+copying clearpath_config/mounts/types/mount.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/mounts/types
+creating /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform
+copying clearpath_config/platform/__init__.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform
+copying clearpath_config/platform/can.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform
+copying clearpath_config/platform/platform.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform
+copying clearpath_config/platform/extras.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform
+copying clearpath_config/platform/battery.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform
+creating /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/attachments
+copying clearpath_config/platform/attachments/r100.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/attachments
+copying clearpath_config/platform/attachments/mux.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/attachments
+copying clearpath_config/platform/attachments/__init__.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/attachments
+copying clearpath_config/platform/attachments/do150.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/attachments
+copying clearpath_config/platform/attachments/do100.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/attachments
+copying clearpath_config/platform/attachments/a200.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/attachments
+copying clearpath_config/platform/attachments/dd100.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/attachments
+copying clearpath_config/platform/attachments/w200.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/attachments
+copying clearpath_config/platform/attachments/j100.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/attachments
+copying clearpath_config/platform/attachments/generic.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/attachments
+copying clearpath_config/platform/attachments/dd150.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/attachments
+copying clearpath_config/platform/attachments/config.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/attachments
+creating /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/types
+copying clearpath_config/platform/types/attachment.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/types
+copying clearpath_config/platform/types/__init__.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/types
+copying clearpath_config/platform/types/bumper.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/types
+creating /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/sensors
+copying clearpath_config/sensors/sensors.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/sensors
+copying clearpath_config/sensors/__init__.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/sensors
+creating /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/sensors/types
+copying clearpath_config/sensors/types/sensor.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/sensors/types
+copying clearpath_config/sensors/types/imu.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/sensors/types
+copying clearpath_config/sensors/types/__init__.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/sensors/types
+copying clearpath_config/sensors/types/lidars_2d.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/sensors/types
+copying clearpath_config/sensors/types/gps.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/sensors/types
+copying clearpath_config/sensors/types/lidars_3d.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/sensors/types
+copying clearpath_config/sensors/types/cameras.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/sensors/types
+creating /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/system
+copying clearpath_config/system/system.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/system
+copying clearpath_config/system/servers.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/system
+copying clearpath_config/system/middleware.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/system
+copying clearpath_config/system/hosts.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/system
+copying clearpath_config/system/__init__.py -> /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/system
+running install
+running install_lib
+creating /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config
+creating /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/__init__.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common
+creating /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types/rmw_implementation.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types/accessory.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types/material.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types/port.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types/username.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types/domain_id.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types/namespace.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types/__init__.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types/serial_number.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types/ip.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types/platform.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types/hostname.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types/list.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types/file.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types/package_path.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types/discovery.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/types/config.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types
+creating /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/utils
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/utils/yaml.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/utils
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/utils/__init__.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/utils
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/common/utils/dictionary.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/utils
+creating /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/mounts
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/mounts/__init__.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/mounts
+creating /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/mounts/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/mounts/types/post.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/mounts/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/mounts/types/flir_ptu.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/mounts/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/mounts/types/__init__.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/mounts/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/mounts/types/fath_pivot.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/mounts/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/mounts/types/sick.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/mounts/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/mounts/types/disk.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/mounts/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/mounts/types/pacs.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/mounts/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/mounts/types/mount.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/mounts/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/mounts/mounts.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/mounts
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/__init__.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/clearpath_config.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config
+creating /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/__init__.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/can.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/platform.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform
+creating /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/attachments
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/attachments/r100.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/attachments
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/attachments/mux.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/attachments
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/attachments/__init__.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/attachments
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/attachments/do150.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/attachments
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/attachments/do100.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/attachments
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/attachments/a200.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/attachments
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/attachments/dd100.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/attachments
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/attachments/w200.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/attachments
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/attachments/j100.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/attachments
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/attachments/generic.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/attachments
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/attachments/dd150.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/attachments
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/attachments/config.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/attachments
+creating /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/types/attachment.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/types/__init__.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/types/bumper.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/extras.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/platform/battery.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform
+creating /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/system
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/system/system.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/system
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/system/servers.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/system
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/system/middleware.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/system
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/system/hosts.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/system
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/system/__init__.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/system
+creating /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/links
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/links/__init__.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/links
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/links/links.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/links
+creating /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/links/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/links/types/box.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/links/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/links/types/__init__.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/links/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/links/types/mesh.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/links/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/links/types/link.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/links/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/links/types/frame.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/links/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/links/types/cylinder.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/links/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/links/types/sphere.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/links/types
+creating /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/manipulators
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/manipulators/manipulators.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/manipulators
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/manipulators/__init__.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/manipulators
+creating /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/manipulators/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/manipulators/types/lifts.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/manipulators/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/manipulators/types/grippers.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/manipulators/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/manipulators/types/__init__.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/manipulators/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/manipulators/types/manipulator.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/manipulators/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/manipulators/types/arms.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/manipulators/types
+creating /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/sensors
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/sensors/sensors.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/sensors
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/sensors/__init__.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/sensors
+creating /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/sensors/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/sensors/types/sensor.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/sensors/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/sensors/types/imu.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/sensors/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/sensors/types/__init__.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/sensors/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/sensors/types/lidars_2d.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/sensors/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/sensors/types/gps.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/sensors/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/sensors/types/lidars_3d.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/sensors/types
+copying /home/jo/clearpath_ws/build/clearpath_config/build/lib/clearpath_config/sensors/types/cameras.py -> /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/sensors/types
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types/rmw_implementation.py to rmw_implementation.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types/accessory.py to accessory.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types/material.py to material.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types/port.py to port.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types/username.py to username.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types/domain_id.py to domain_id.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types/namespace.py to namespace.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types/serial_number.py to serial_number.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types/ip.py to ip.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types/platform.py to platform.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types/hostname.py to hostname.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types/list.py to list.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types/file.py to file.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types/package_path.py to package_path.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types/discovery.py to discovery.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/types/config.py to config.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/utils/yaml.py to yaml.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/utils/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/common/utils/dictionary.py to dictionary.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/mounts/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/mounts/types/post.py to post.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/mounts/types/flir_ptu.py to flir_ptu.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/mounts/types/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/mounts/types/fath_pivot.py to fath_pivot.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/mounts/types/sick.py to sick.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/mounts/types/disk.py to disk.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/mounts/types/pacs.py to pacs.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/mounts/types/mount.py to mount.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/mounts/mounts.py to mounts.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/clearpath_config.py to clearpath_config.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/can.py to can.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/platform.py to platform.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/attachments/r100.py to r100.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/attachments/mux.py to mux.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/attachments/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/attachments/do150.py to do150.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/attachments/do100.py to do100.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/attachments/a200.py to a200.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/attachments/dd100.py to dd100.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/attachments/w200.py to w200.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/attachments/j100.py to j100.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/attachments/generic.py to generic.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/attachments/dd150.py to dd150.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/attachments/config.py to config.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/types/attachment.py to attachment.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/types/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/types/bumper.py to bumper.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/extras.py to extras.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/platform/battery.py to battery.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/system/system.py to system.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/system/servers.py to servers.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/system/middleware.py to middleware.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/system/hosts.py to hosts.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/system/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/links/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/links/links.py to links.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/links/types/box.py to box.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/links/types/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/links/types/mesh.py to mesh.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/links/types/link.py to link.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/links/types/frame.py to frame.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/links/types/cylinder.py to cylinder.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/links/types/sphere.py to sphere.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/manipulators/manipulators.py to manipulators.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/manipulators/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/manipulators/types/lifts.py to lifts.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/manipulators/types/grippers.py to grippers.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/manipulators/types/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/manipulators/types/manipulator.py to manipulator.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/manipulators/types/arms.py to arms.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/sensors/sensors.py to sensors.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/sensors/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/sensors/types/sensor.py to sensor.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/sensors/types/imu.py to imu.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/sensors/types/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/sensors/types/lidars_2d.py to lidars_2d.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/sensors/types/gps.py to gps.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/sensors/types/lidars_3d.py to lidars_3d.cpython-310.pyc
+byte-compiling /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config/sensors/types/cameras.py to cameras.cpython-310.pyc
+running install_data
+creating /home/jo/clearpath_ws/install/clearpath_config/share/ament_index/resource_index/packages
+copying resource/clearpath_config -> /home/jo/clearpath_ws/install/clearpath_config/share/ament_index/resource_index/packages
+copying package.xml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config
+creating /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/w200/w200_dual_laser.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/w200/w200_default.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/w200/w200_outline.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/w200/w200_velodyne.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/r100/r100_dual_laser_hokuyo.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/r100/r100_dual_laser.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/r100/r100_default.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/r100/r100_outline.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/dd150/dd150_dual_laser.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/dd150/dd150_default.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/dd150/dd150_velodyne.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/dd150/dd150_outline.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/dd100/dd100_velodyne.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/dd100/dd100_dual_laser.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/dd100/dd100_outline.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/dd100/dd100_default.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/do150/do150_velodyne.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/do150/do150_default.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/do150/do150_dual_laser.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/do150/do150_outline.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/j100/j100_default.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/j100/j100_sample.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/j100/j100_microstrain_gq7.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/j100/j100_outline.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/j100/j100_velodyne.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/j100/j100_dual_laser.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/manipulators/grippers/robotiq_2f_140.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/manipulators/grippers/kinova_2f_lite.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/manipulators/grippers/robotiq_2f_85.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/manipulators/arms/universal_robots.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/manipulators/arms/kinova_gen3_6dof.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/manipulators/arms/kinova_gen3_lite.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/manipulators/arms/kinova_gen3_7dof.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/a200/a200_velodyne.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/a200/a200_outline.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/a200/a200_dual_laser.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/a200/a200_sample.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/a200/a200_default.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/do100/do100_outline.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/do100/do100_velodyne.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/do100/do100_dual_laser.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/do100/do100_default.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/sensors/redshift_um7.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/sensors/axis_camera.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/sensors/swiftnav_duro.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/sensors/novatel_smart7.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/sensors/novatel_smart6.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/sensors/flir_blackfly.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/sensors/velodyne_lidar.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/sensors/luxonis_oakd.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/sensors/intel_realsense.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/sensors/garmin_18x.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/sensors/chrobotics_um6.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/sensors/microstrain_gq7.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/sensors/sick_lms1xx.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/sensors/hokuyo_ust.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/sensors/microstrain_imu.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/sensors/stereolabs_zed.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+copying clearpath_config/sample/sensors/ouster_os1.yaml -> /home/jo/clearpath_ws/install/clearpath_config/share/clearpath_config/sample
+running install_egg_info
+Copying ../../build/clearpath_config/clearpath_config.egg-info to /home/jo/clearpath_ws/install/clearpath_config/lib/python3.10/site-packages/clearpath_config-1.3.3-py3.10.egg-info
+running install_scripts
+writing list of installed files to '/home/jo/clearpath_ws/build/clearpath_config/install.log'

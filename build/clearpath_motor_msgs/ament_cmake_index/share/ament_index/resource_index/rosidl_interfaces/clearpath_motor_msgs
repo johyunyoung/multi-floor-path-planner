@@ -1,0 +1,8 @@
+msg/PumaFeedback.idl
+msg/PumaFeedback.msg
+msg/PumaMultiFeedback.idl
+msg/PumaMultiFeedback.msg
+msg/PumaMultiStatus.idl
+msg/PumaMultiStatus.msg
+msg/PumaStatus.idl
+msg/PumaStatus.msg

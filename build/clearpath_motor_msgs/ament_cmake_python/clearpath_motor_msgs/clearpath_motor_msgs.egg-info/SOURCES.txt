@@ -1,0 +1,6 @@
+setup.py
+clearpath_motor_msgs/__init__.py
+clearpath_motor_msgs.egg-info/PKG-INFO
+clearpath_motor_msgs.egg-info/SOURCES.txt
+clearpath_motor_msgs.egg-info/dependency_links.txt
+clearpath_motor_msgs.egg-info/top_level.txt

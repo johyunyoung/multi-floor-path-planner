@@ -1,0 +1,21 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/clearpath_motor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/clearpath_motor_msgs/msg/puma_feedback__type_support.cpp.o"
+  "CMakeFiles/clearpath_motor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/clearpath_motor_msgs/msg/puma_feedback__type_support.cpp.o.d"
+  "CMakeFiles/clearpath_motor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/clearpath_motor_msgs/msg/puma_multi_feedback__type_support.cpp.o"
+  "CMakeFiles/clearpath_motor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/clearpath_motor_msgs/msg/puma_multi_feedback__type_support.cpp.o.d"
+  "CMakeFiles/clearpath_motor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/clearpath_motor_msgs/msg/puma_multi_status__type_support.cpp.o"
+  "CMakeFiles/clearpath_motor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/clearpath_motor_msgs/msg/puma_multi_status__type_support.cpp.o.d"
+  "CMakeFiles/clearpath_motor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/clearpath_motor_msgs/msg/puma_status__type_support.cpp.o"
+  "CMakeFiles/clearpath_motor_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/clearpath_motor_msgs/msg/puma_status__type_support.cpp.o.d"
+  "libclearpath_motor_msgs__rosidl_typesupport_c.pdb"
+  "libclearpath_motor_msgs__rosidl_typesupport_c.so"
+  "rosidl_typesupport_c/clearpath_motor_msgs/msg/puma_feedback__type_support.cpp"
+  "rosidl_typesupport_c/clearpath_motor_msgs/msg/puma_multi_feedback__type_support.cpp"
+  "rosidl_typesupport_c/clearpath_motor_msgs/msg/puma_multi_status__type_support.cpp"
+  "rosidl_typesupport_c/clearpath_motor_msgs/msg/puma_status__type_support.cpp"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/clearpath_motor_msgs__rosidl_typesupport_c.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

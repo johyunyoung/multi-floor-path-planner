@@ -1,0 +1,64 @@
+[0.047s] Invoking command in '/home/jo/clearpath_ws/build/clearpath_mounts_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/jo/clearpath_ws/src/clearpath_common/clearpath_mounts_description -DCMAKE_INSTALL_PREFIX=/home/jo/clearpath_ws/install/clearpath_mounts_description
+[0.235s] -- The C compiler identification is GNU 11.4.0
+[0.236s] -- The CXX compiler identification is GNU 11.4.0
+[0.236s] -- Detecting C compiler ABI info
+[0.236s] -- Detecting C compiler ABI info - done
+[0.236s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.236s] -- Detecting C compile features
+[0.236s] -- Detecting C compile features - done
+[0.236s] -- Detecting CXX compiler ABI info
+[0.244s] -- Detecting CXX compiler ABI info - done
+[0.250s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.251s] -- Detecting CXX compile features
+[0.251s] -- Detecting CXX compile features - done
+[0.258s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.613s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.857s] -- Configuring done
+[0.859s] -- Generating done
+[0.860s] -- Build files have been written to: /home/jo/clearpath_ws/build/clearpath_mounts_description
+[0.872s] Invoked command in '/home/jo/clearpath_ws/build/clearpath_mounts_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/jo/clearpath_ws/src/clearpath_common/clearpath_mounts_description -DCMAKE_INSTALL_PREFIX=/home/jo/clearpath_ws/install/clearpath_mounts_description
+[0.873s] Invoking command in '/home/jo/clearpath_ws/build/clearpath_mounts_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/jo/clearpath_ws/build/clearpath_mounts_description -- -j20 -l20
+[0.930s] Invoked command in '/home/jo/clearpath_ws/build/clearpath_mounts_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/jo/clearpath_ws/build/clearpath_mounts_description -- -j20 -l20
+[0.931s] Invoking command in '/home/jo/clearpath_ws/build/clearpath_mounts_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/jo/clearpath_ws/build/clearpath_mounts_description
+[0.936s] -- Install configuration: ""
+[0.937s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/meshes
+[0.937s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/meshes/pacs
+[0.937s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/meshes/pacs/bracket_horizontal.stl
+[0.937s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/meshes/pacs/bracket_horizontal_large.stl
+[0.937s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/meshes/pacs/bracket_extension_20.stl
+[0.937s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/meshes/pacs/bracket_extension_40.stl
+[0.937s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/meshes/pacs/bracket_vertical.stl
+[0.937s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/meshes/pacs/riser_1x7.stl
+[0.937s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/meshes/pacs/bracket_extension_60.stl
+[0.937s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/meshes/pacs/bracket_extension_80.stl
+[0.937s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/meshes/pacs/riser_8x7.stl
+[0.938s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/meshes/fath_pivot_mount_base.dae
+[0.938s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/meshes/disk.stl
+[0.938s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/meshes/sick_inverted.dae
+[0.938s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/meshes/sick_upright.stl
+[0.938s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/meshes/fath_pivot_mount.dae
+[0.938s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/urdf
+[0.939s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/urdf/pacs
+[0.939s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/urdf/pacs/riser.urdf.xacro
+[0.939s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/urdf/pacs/riser_leg.urdf.xacro
+[0.939s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/urdf/pacs/bracket.urdf.xacro
+[0.939s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/urdf/fath_pivot.urdf.xacro
+[0.939s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/urdf/post.urdf.xacro
+[0.939s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/urdf/sick.urdf.xacro
+[0.939s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/urdf/disk.urdf.xacro
+[0.939s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/ament_index/resource_index/package_run_dependencies/clearpath_mounts_description
+[0.940s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/ament_index/resource_index/parent_prefix_path/clearpath_mounts_description
+[0.940s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/environment/ament_prefix_path.sh
+[0.940s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/environment/ament_prefix_path.dsv
+[0.940s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/environment/path.sh
+[0.940s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/environment/path.dsv
+[0.940s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/local_setup.bash
+[0.940s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/local_setup.sh
+[0.940s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/local_setup.zsh
+[0.940s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/local_setup.dsv
+[0.940s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/package.dsv
+[0.940s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/ament_index/resource_index/packages/clearpath_mounts_description
+[0.940s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/cmake/clearpath_mounts_descriptionConfig.cmake
+[0.940s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/cmake/clearpath_mounts_descriptionConfig-version.cmake
+[0.940s] -- Installing: /home/jo/clearpath_ws/install/clearpath_mounts_description/share/clearpath_mounts_description/package.xml
+[0.944s] Invoked command in '/home/jo/clearpath_ws/build/clearpath_mounts_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/jo/clearpath_ws/build/clearpath_mounts_description

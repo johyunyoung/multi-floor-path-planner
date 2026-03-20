@@ -1,0 +1,19 @@
+Metadata-Version: 2.4
+Name: clearpath_config
+Version: 1.3.3
+Summary: Clearpath Configuration YAML Parser and Writer
+Author: Luis Camero
+Author-email: lcamero@clearpathrobotics.com
+Maintainer: Luis Camero
+Maintainer-email: lcamero@clearpathrobotics.com
+License: BSD-3
+License-File: LICENSE
+Requires-Dist: setuptools
+Requires-Dist: requests
+Requires-Dist: importlib-metadata; python_version == "3.8"
+Dynamic: license
+Dynamic: license-file
+Dynamic: maintainer
+Dynamic: maintainer-email
+Dynamic: requires-dist
+Dynamic: summary
