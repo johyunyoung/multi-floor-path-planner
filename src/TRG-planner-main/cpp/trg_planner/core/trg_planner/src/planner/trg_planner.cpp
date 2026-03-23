@@ -164,7 +164,7 @@ void TRGPlanner::runGraphFSM() {
           }
           auto start = tic();
           mtx.obs.lock();  // too slow, and not necessary (then, comment this line)
-          trg_->setLocalMap(state_.pose2d, cs_.obsPtr);
+          trg_->setLocalMap(state_.pose3d, cs_.obsPtr);
           if (!param_.isPreMap) trg_->setGlobalMap(cs_.obsPtr);
           mtx.obs.unlock();
           trg_->updateGraph();
@@ -216,7 +216,7 @@ void TRGPlanner::runPlanningFSM() {
       case planningState::PLANNING: {
         path_.clear();
         auto start = tic();
-        if (trg_->planSafePath(state_.pose2d,
+        if (trg_->planSafePath(state_.pose3d,
                                goal_state_.pose,
                                path_.raw,
                                path_.direct_dist,
@@ -240,12 +240,12 @@ void TRGPlanner::runPlanningFSM() {
         break;
       }
       case planningState::ONGOING: {
-        if (trg_->checkReadched(state_.pose2d)) {
+        if (trg_->checkReadched(state_.pose3d)) {
           print_success("Goal reached");
           fsm_.planning.transition(planningState::RESET);
           break;
         }
-        if (trg_->checkReplan(state_.pose2d, path_.raw)) {
+        if (trg_->checkReplan(state_.pose3d, path_.raw)) {
           print_warning("Replanning");
           fsm_.planning.transition(planningState::PLANNING);
           break;

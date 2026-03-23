@@ -41,17 +41,17 @@ void TRG::initGraph(bool isPreMap, Eigen::Vector3f start3d = Eigen::Vector3f::Ze
 
   assert(graph.cloud_map->size() > 0 && "Map is empty");
 
-  graph.root_pos           = start3d.head(2);
-  Eigen::Vector2f root_pos = graph.root_pos;
-  root_pos.x()             = root_pos.x() + param_.expand_dist;
-  int cnt                  = 0;
-  while (!this->addNode(graph.node_id, root_pos, NodeState::Valid, graph.type)) {
+  graph.root_pos             = start3d;
+  Eigen::Vector2f root_pos2d = graph.root_pos.head(2);
+  root_pos2d.x()             = root_pos2d.x() + param_.expand_dist;
+  int cnt                    = 0;
+  while (!this->addNode(graph.node_id, root_pos2d, start3d.z(), NodeState::Valid, graph.type)) {
     if (cnt > 100) {
       print_error("Failed to generate root node");
       exit(1);
     }
-    root_pos = root_pos + Eigen::Vector2f(param_.expand_dist * distr_(gen_),
-                                          param_.expand_dist * distr_(gen_));
+    root_pos2d = root_pos2d + Eigen::Vector2f(param_.expand_dist * distr_(gen_),
+                                              param_.expand_dist * distr_(gen_));
     cnt++;
   }
 
@@ -76,25 +76,26 @@ void TRG::setGlobalMap(PointCloudPtr& map) {
 
   for (int i = 0; i < global_graph.cloud_map->size(); ++i) {
     PtsDefault& pt = global_graph.cloud_map->points[i];
-    kd_insert2(global_graph.map_tree, pt.x, pt.y, &pt);
+    kd_insert3(global_graph.map_tree, pt.x, pt.y, pt.z, &pt);
   }
 
   print("Root pos: " + std::to_string(global_graph.root_pos.x()) + ", " +
-            std::to_string(global_graph.root_pos.y()),
+            std::to_string(global_graph.root_pos.y()) + ", " +
+            std::to_string(global_graph.root_pos.z()),
         param_.isVerbose);
 }
 
-void TRG::setLocalMap(Eigen::Vector2f start2d, PointCloudPtr& map) {
+void TRG::setLocalMap(Eigen::Vector3f start3d, PointCloudPtr& map) {
   std::lock_guard<std::mutex> lock(mtx.graph);
   trgStruct&                  local_graph = *trgMap_["local"];
   this->resetMap("local");
 
-  local_graph.root_pos   = start2d;
+  local_graph.root_pos   = start3d;
   *local_graph.cloud_map = *map;
 
   for (int i = 0; i < local_graph.cloud_map->size(); ++i) {
     PtsDefault& pt = local_graph.cloud_map->points[i];
-    kd_insert2(local_graph.map_tree, pt.x, pt.y, &pt);
+    kd_insert3(local_graph.map_tree, pt.x, pt.y, pt.z, &pt);
   }
 
   this->setLocalGraph(false);
@@ -108,37 +109,39 @@ void TRG::setLocalGraph(bool useMutex = false) {
   trgStruct& local_graph  = *trgMap_["local"];
   this->resetGraph("local");
   for (auto& node : global_graph.nodes) {
-    kdres* res = kd_nearest_range2(local_graph.map_tree,
+    kdres* res = kd_nearest_range3(local_graph.map_tree,
                                    node.second->pos_.x(),
                                    node.second->pos_.y(),
+                                   node.second->pos_.z(),
                                    param_.robot_size * 0.5);
     if (kd_res_size(res) == 0) {
       kd_res_free(res);
       continue;
     }
     local_graph.nodes[node.first] = node.second;
-    kd_insert2(local_graph.node_tree, node.second->pos_.x(), node.second->pos_.y(), node.second);
+    kd_insert3(local_graph.node_tree, node.second->pos_.x(), node.second->pos_.y(), node.second->pos_.z(), node.second);
     kd_res_free(res);
   }
 }
 
-bool TRG::addNode(int node_id, Eigen::Vector2f& node_pos, NodeState state, std::string type) {
+bool TRG::addNode(int node_id, Eigen::Vector2f& node_pos, float ref_z, NodeState state, std::string type) {
   trgStruct& graph = *trgMap_[type];
 
   /// Check reference position is valid
   if (node_id == 0) {
-    if (this->isCollision(node_pos, graph.type, param_.collision_threshold)) {
+    Eigen::Vector3f pos3d(node_pos.x(), node_pos.y(), ref_z);
+    if (this->isCollision(pos3d, graph.type, param_.collision_threshold)) {
       return false;
     }
   }
 
-  /// Create new node
-  kdres*      res = kd_nearest2(graph.map_tree, node_pos.x(), node_pos.y());
+  /// Create new node (use ref_z to find the correct floor's surface point)
+  kdres*      res = kd_nearest3(graph.map_tree, node_pos.x(), node_pos.y(), ref_z);
   PtsDefault* pt  = reinterpret_cast<PtsDefault*>(kd_res_item_data(res));
   kd_res_free(res);
   Node* node           = new Node(node_id, node_pos, pt->z, state);
   graph.nodes[node_id] = node;
-  kd_insert2(graph.node_tree, node_pos.x(), node_pos.y(), node);
+  kd_insert3(graph.node_tree, node_pos.x(), node_pos.y(), pt->z, node);
   graph.node_id++;
   return true;
 }
@@ -173,8 +176,10 @@ void TRG::wireEdge(Node* node1, Node* node2, std::string type) {
   /// check collision between node1 and node2
   float ds = param_.robot_size * 0.5;
   for (float i = 0; i < dist; i += ds) {
-    Eigen::Vector2f pos = node1->pos_.head(2) + i * dir;
-    if (this->isCollision(pos, type, param_.collision_threshold)) {
+    Eigen::Vector2f pos2d = node1->pos_.head(2) + i * dir;
+    float interp_z = node1->pos_.z() + (node2->pos_.z() - node1->pos_.z()) * (i / dist);
+    Eigen::Vector3f pos3d(pos2d.x(), pos2d.y(), interp_z);
+    if (this->isCollision(pos3d, type, param_.collision_threshold)) {
       return;
     }
   }
@@ -193,7 +198,8 @@ void TRG::wireEdge(Node* node1, Node* node2, std::string type) {
   pcl::PointCloud<PtsDefault>::Ptr ellipse_pts(new pcl::PointCloud<PtsDefault>());
   Eigen::Matrix2f                  R;        // rotation matrix for TF from global to local
   R << dir.x(), -dir.y(), dir.y(), dir.x();  // (dir is x-axis)
-  kdres* res = kd_nearest_range2(graph.map_tree, center.x(), center.y(), a);
+  float center_z = 0.5f * (node1->pos_.z() + node2->pos_.z());
+  kdres* res = kd_nearest_range3(graph.map_tree, center.x(), center.y(), center_z, a);
   if (kd_res_size(res) == 0) {
     kd_res_free(res);
     return;
@@ -287,7 +293,8 @@ void TRG::expandGraph(int ref_id, std::string type) {
       float           angle       = distr_(gen_) * 2 * M_PI;
       Eigen::Vector2f sample =
           node->pos_.head(2) + Eigen::Vector2f(expand_dist * cos(angle), expand_dist * sin(angle));
-      if (this->isCollision(sample, graph.type, param_.collision_threshold)) {
+      Eigen::Vector3f sample3d(sample.x(), sample.y(), node->pos_.z());
+      if (this->isCollision(sample3d, graph.type, param_.collision_threshold)) {
         trial_sample++;
         continue;
       }
@@ -297,20 +304,21 @@ void TRG::expandGraph(int ref_id, std::string type) {
     /// Add new nodes and wire edges
     for (auto& sample : samples) {
       /// 1. Check if the sample is already in the graph
-      kdres* res           = kd_nearest2(graph.node_tree, sample.x(), sample.y());
+      kdres* res           = kd_nearest3(graph.node_tree, sample.x(), sample.y(), node->pos_.z());
       Node*  existing_node = reinterpret_cast<Node*>(kd_res_item_data(res));
       kd_res_free(res);
       if (existing_node->state_ == NodeState::Invalid) {
         continue;
       }
-      if ((existing_node->pos_.head(2) - sample).norm() < param_.robot_size) {
+      Eigen::Vector3f sample3d_check(sample.x(), sample.y(), node->pos_.z());
+      if ((existing_node->pos_ - sample3d_check).norm() < param_.robot_size) {
         this->wireEdge(node, existing_node, graph.type);
         continue;
       }
 
       /// 2. Add new node
       NodeState new_state = (ref_id == 0) ? NodeState::Valid : NodeState::Frontier;
-      if (!this->addNode(graph.node_id, sample, new_state, graph.type)) {
+      if (!this->addNode(graph.node_id, sample, node->pos_.z(), new_state, graph.type)) {
         continue;
       }
       Node* new_node = graph.nodes.at(graph.node_id - 1);
@@ -319,8 +327,8 @@ void TRG::expandGraph(int ref_id, std::string type) {
 
       /// 3. Wire edge between new node and existing nodes
       if (param_.expand_dist - param_.robot_size < 0.25 * param_.expand_dist) {
-        kdres* res2 = kd_nearest_range2(
-            graph.node_tree, new_node->pos_.x(), new_node->pos_.y(), param_.expand_dist);
+        kdres* res2 = kd_nearest_range3(
+            graph.node_tree, new_node->pos_.x(), new_node->pos_.y(), new_node->pos_.z(), param_.expand_dist);
         if (kd_res_size(res2) > 0) {
           while (!kd_res_end(res2)) {
             Node* existing_node = reinterpret_cast<Node*>(kd_res_item_data(res2));
@@ -355,15 +363,16 @@ void TRG::updateGraph() {
   std::deque<Node*> expand_queue;
   for (auto& node : local_graph.nodes) {
     Eigen::Vector2f npos2d = node.second->pos_.head(2);
-    if ((npos2d - local_graph.root_pos).norm() > 2.0 * param_.expand_dist) {
-      if (this->isCollision(npos2d, local_graph.type, param_.update_collision_threshold) ||
+    Eigen::Vector3f npos3d = node.second->pos_;
+    if ((npos2d - local_graph.root_pos.head(2)).norm() > 2.0 * param_.expand_dist) {
+      if (this->isCollision(npos3d, local_graph.type, param_.update_collision_threshold) ||
           node.second->edges_.size() < 1) {
         node.second->state_ = NodeState::Invalid;
         continue;
       }
     }
 
-    if (this->isFrontier(npos2d) && node.second->state_ == NodeState::Frontier) {
+    if (this->isFrontier(npos3d) && node.second->state_ == NodeState::Frontier) {
       node.second->state_ = NodeState::Frontier;
       expand_queue.push_back(node.second);
       continue;
@@ -418,7 +427,7 @@ void TRG::cleanGraph(bool updateLocal = true) {
   global_graph.nodes   = new_nodes;
   global_graph.node_id = new_id;
   for (auto& node : global_graph.nodes) {
-    kd_insert2(global_graph.node_tree, node.second->pos_.x(), node.second->pos_.y(), node.second);
+    kd_insert3(global_graph.node_tree, node.second->pos_.x(), node.second->pos_.y(), node.second->pos_.z(), node.second);
   }
 
   if (updateLocal) {
@@ -433,7 +442,7 @@ void TRG::setGoal(Eigen::Vector3f& goal) {
   goal_.pose3d = goal;
   goal_.pose2d = goal.head(2);
 
-  kdres* res = kd_nearest_range2(global_graph.node_tree, goal.x(), goal.y(), param_.robot_size);
+  kdres* res = kd_nearest_range3(global_graph.node_tree, goal.x(), goal.y(), goal.z(), param_.robot_size);
   if (kd_res_size(res) == 0) {
     kd_res_free(res);
     float min_dist = std::numeric_limits<float>::max();
@@ -441,7 +450,7 @@ void TRG::setGoal(Eigen::Vector3f& goal) {
       // if (node.second->state_ != NodeState::Frontier) {
       //     continue;
       // }
-      float dist = (node.second->pos_.head(2) - goal.head(2)).norm();
+      float dist = (node.second->pos_ - goal).norm();
       if (dist < min_dist) {
         min_dist   = dist;
         goal_.node = node.second;
@@ -456,22 +465,22 @@ void TRG::setGoal(Eigen::Vector3f& goal) {
   }
 }
 
-bool TRG::checkReadched(Eigen::Vector2f& pos2d) {
+bool TRG::checkReadched(Eigen::Vector3f& pos3d) {
   // print("TRG checkReached", param_.isVerbose);
-  float dist = (goal_.pose2d - pos2d).norm();
+  float dist = (goal_.pose3d - pos3d).norm();
   if (dist < param_.goal_tolerance) {
     return true;
   }
   return false;
 }
 
-bool TRG::checkReplan(Eigen::Vector2f& pos2d, std::vector<Eigen::Vector3f>& path) {
+bool TRG::checkReplan(Eigen::Vector3f& pos3d, std::vector<Eigen::Vector3f>& path) {
   // print("TRG checkReplan", param_.isVerbose);
   if (goal_.node == nullptr) {
     return false;
   }
 
-  float dist2subgoal = (goal_.node->pos_.head(2) - pos2d).norm();
+  float dist2subgoal = (goal_.node->pos_ - pos3d).norm();
   if (!goal_.isKnown && dist2subgoal < param_.goal_tolerance) {
     return true;
   }
@@ -482,7 +491,7 @@ bool TRG::checkReplan(Eigen::Vector2f& pos2d, std::vector<Eigen::Vector3f>& path
 
   trgStruct& global_graph = *trgMap_["global"];
   for (auto& pt : path) {
-    kdres* res = kd_nearest_range2(global_graph.node_tree, pt.x(), pt.y(), param_.robot_size);
+    kdres* res = kd_nearest_range3(global_graph.node_tree, pt.x(), pt.y(), pt.z(), param_.robot_size);
     if (kd_res_size(res) == 0) {
       kd_res_free(res);
       return true;
@@ -492,7 +501,7 @@ bool TRG::checkReplan(Eigen::Vector2f& pos2d, std::vector<Eigen::Vector3f>& path
   return false;
 }
 
-bool TRG::planSafePath(Eigen::Vector2f&              start2d,
+bool TRG::planSafePath(Eigen::Vector3f&              start3d,
                        Eigen::Vector3f&              goal_pose,
                        std::vector<Eigen::Vector3f>& out_path,
                        float&                        direct_dist,
@@ -504,7 +513,7 @@ bool TRG::planSafePath(Eigen::Vector2f&              start2d,
 
   trgStruct& global_graph = *trgMap_["global"];
 
-  kdres* res        = kd_nearest2(global_graph.node_tree, start2d.x(), start2d.y());
+  kdres* res        = kd_nearest3(global_graph.node_tree, start3d.x(), start3d.y(), start3d.z());
   Node*  start_node = reinterpret_cast<Node*>(kd_res_item_data(res));
 
   std::priority_queue<OptimizeNode*,
@@ -513,7 +522,7 @@ bool TRG::planSafePath(Eigen::Vector2f&              start2d,
       open_list([](OptimizeNode* a, OptimizeNode* b) { return a->f_ > b->f_; });
   std::vector<OptimizeNode*> open_check(global_graph.nodes.size(), nullptr);
 
-  direct_dist                = (goal_.node->pos_.head(2) - start_node->pos_.head(2)).norm();
+  direct_dist                = (goal_.node->pos_ - start_node->pos_).norm();
   double        g_cost       = 0.0;
   double        f_cost       = g_cost + direct_dist;
   OptimizeNode* st_opti_node = new OptimizeNode(start_node->id_, f_cost, g_cost);
@@ -564,7 +573,7 @@ bool TRG::planSafePath(Eigen::Vector2f&              start2d,
       }
 
       double next_g_cost = opti_node->g_ + (param_.safety_factor * e->weight_ + 1) * e->dist_;
-      double next_f_cost = next_g_cost + (goal_.node->pos_.head(2) - dst_node->pos_.head(2)).norm();
+      double next_f_cost = next_g_cost + (goal_.node->pos_ - dst_node->pos_).norm();
 
       OptimizeNode* dst_opti_node = new OptimizeNode(dst_node->id_, next_f_cost, next_g_cost);
       dst_opti_node->parent_      = opti_node;
@@ -635,9 +644,9 @@ void TRG::resetMap(std::string type) {
   graph.cloud_map->clear();
 }
 
-bool TRG::isCollision(Eigen::Vector2f& pos, std::string type, float threshold = 0.1) {
+bool TRG::isCollision(Eigen::Vector3f& pos, std::string type, float threshold = 0.1) {
   trgStruct& graph = *trgMap_[type];
-  kdres*     res   = kd_nearest_range2(graph.map_tree, pos.x(), pos.y(), param_.robot_size);
+  kdres*     res   = kd_nearest_range3(graph.map_tree, pos.x(), pos.y(), pos.z(), param_.robot_size);
   if (kd_res_size(res) == 0) {
     kd_res_free(res);
     return true;
@@ -669,15 +678,15 @@ bool TRG::isCollision(Eigen::Vector2f& pos, std::string type, float threshold = 
   return false;
 }
 
-bool TRG::isFrontier(Eigen::Vector2f& pos) {
+bool TRG::isFrontier(Eigen::Vector3f& pos) {
   trgStruct&      global_graph = *trgMap_["global"];
   trgStruct&      local_graph  = *trgMap_["local"];
-  Eigen::Vector2f dir          = pos - local_graph.root_pos;
+  Eigen::Vector2f dir          = pos.head(2) - local_graph.root_pos.head(2);
   dir.normalize();
 
-  Eigen::Vector2f check = pos + 2 * param_.robot_size * dir;
+  Eigen::Vector2f check2d = pos.head(2) + 2 * param_.robot_size * dir;
 
-  kdres* res2 = kd_nearest_range2(global_graph.node_tree, check.x(), check.y(), param_.robot_size);
+  kdres* res2 = kd_nearest_range3(global_graph.node_tree, check2d.x(), check2d.y(), pos.z(), param_.robot_size);
   if (kd_res_size(res2) > 0) {
     kd_res_free(res2);
     return false;
@@ -685,7 +694,7 @@ bool TRG::isFrontier(Eigen::Vector2f& pos) {
   kd_res_free(res2);
 
   kdres* res1 =
-      kd_nearest_range2(local_graph.map_tree, check.x(), check.y(), 0.5 * param_.robot_size);
+      kd_nearest_range3(local_graph.map_tree, check2d.x(), check2d.y(), pos.z(), 0.5 * param_.robot_size);
   if (kd_res_size(res1) == 0) {
     kd_res_free(res1);
     return true;

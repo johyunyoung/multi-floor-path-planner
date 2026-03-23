@@ -64,10 +64,10 @@ class TRG {
   void loadPrebuiltGraph();
 
   void setGlobalMap(PointCloudPtr& map);
-  void setLocalMap(Eigen::Vector2f start2d, PointCloudPtr& map);
+  void setLocalMap(Eigen::Vector3f start3d, PointCloudPtr& map);
   void setLocalGraph(bool useMutex);
 
-  bool addNode(int node_id, Eigen::Vector2f& node_pos, NodeState state, std::string type);
+  bool addNode(int node_id, Eigen::Vector2f& node_pos, float ref_z, NodeState state, std::string type);
   void wireEdge(Node* node1, Node* node2, std::string type);
 
   void expandGraph(int node_id, std::string type);
@@ -75,10 +75,10 @@ class TRG {
   void updateGraph();
 
   void setGoal(Eigen::Vector3f& goal);
-  bool checkReadched(Eigen::Vector2f& pos2d);
-  bool checkReplan(Eigen::Vector2f& pos2d, std::vector<Eigen::Vector3f>& path);
+  bool checkReadched(Eigen::Vector3f& pos3d);
+  bool checkReplan(Eigen::Vector3f& pos3d, std::vector<Eigen::Vector3f>& path);
 
-  bool planSafePath(Eigen::Vector2f&              start2d,
+  bool planSafePath(Eigen::Vector3f&              start3d,
                     Eigen::Vector3f&              goal_pose,
                     std::vector<Eigen::Vector3f>& out_path,
                     float&                        direct_dist,
@@ -89,8 +89,8 @@ class TRG {
   void resetGraph(std::string type);
   void resetMap(std::string type);
 
-  bool isCollision(Eigen::Vector2f& pos2d, std::string type, float threshold);
-  bool isFrontier(Eigen::Vector2f& pos2d);
+  bool isCollision(Eigen::Vector3f& pos3d, std::string type, float threshold);
+  bool isFrontier(Eigen::Vector3f& pos3d);
 
   std::unordered_map<int, Node*> getGraph(std::string type);
   std::unordered_map<int, Node*> getGraphCopy(std::string type);
@@ -103,11 +103,11 @@ class TRG {
     std::string type;
 
     std::unordered_map<int, Node*> nodes;
-    kdtree*                        node_tree = kd_create(2);
+    kdtree*                        node_tree = kd_create(3);
     int                            node_id;
-    Eigen::Vector2f                root_pos = Eigen::Vector2f::Zero();
+    Eigen::Vector3f                root_pos = Eigen::Vector3f::Zero();
 
-    kdtree*       map_tree  = kd_create(2);
+    kdtree*       map_tree  = kd_create(3);
     PointCloudPtr cloud_map = nullptr;
   };
   trgStruct prebuilt_trg_ = trgStruct("prebuilt");
