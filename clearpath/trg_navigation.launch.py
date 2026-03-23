@@ -60,7 +60,16 @@ def generate_launch_description():
         output='screen',
     )
 
+    # ── Local Planner (waypoint extractor + local planner + path follower) ─
+    local_planner_pkg = get_package_share_directory('local_planner')
+    local_planner_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(local_planner_pkg, 'launch', 'local_planner.launch.py')
+        ),
+    )
+
     ld = LaunchDescription(ARGUMENTS)
     ld.add_action(sim)
     ld.add_action(trg_node)
+    ld.add_action(local_planner_launch)
     return ld
