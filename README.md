@@ -64,11 +64,60 @@ ros2 launch /home/jo/clearpath_ws/clearpath/simulation.launch.py
 ros2 launch /home/jo/clearpath_ws/clearpath/trg_navigation.launch.py world:=simple_multi_floor x:=1.0 y:=2.0
 ```
 
-## RViz에서 경로 생성
+## 좌표계 (odom 프레임)
+
+로봇의 **초기 spawn 위치/방향이 원점**이 됩니다. 위에서 내려다본 기준:
+
+```
+        x+ (앞쪽)
+        ▲
+        │
+        │
+y+ ◄────┼────► y- (오른쪽)
+        │
+        │
+        ▼
+        x- (뒤쪽)
+
+z+ = 위쪽 (화면 밖으로)
+```
+
+| 축 | 양의 방향 | 예시 |
+|----|----------|------|
+| x  | 앞쪽     | `x=5` → 초기 위치에서 앞쪽 5m |
+| y  | 왼쪽     | `y=3` → 초기 위치에서 왼쪽 3m |
+| z  | 위쪽     | `z=1` → 지면에서 1m 위 |
+| yaw | **반시계방향 (CCW)** | `yaw=90` → x+에서 y+ 방향 (앞→왼쪽) |
+
+> **주의**: yaw는 **반시계방향이 양수**입니다 (ROS 오른손 법칙).
+> 시계방향으로 회전하려면 음수 값을 사용하세요 (예: `yaw=-90`).
+
+## 목표 지점 설정
+
+### 방법 1: RViz 2D Nav Goal (x, y만)
 
 1. 실행 후 RViz 상단 툴바에서 **2D Nav Goal** 클릭
 2. 맵에 목표점을 드래그하여 지정
 3. 녹색 경로(`/trg/output/path`)가 자동 표시됨
+
+> z=0 고정이므로 동일 층에서만 사용 가능.
+
+### 방법 2: 3D Goal Pose Publisher (x, y, z, yaw)
+
+별도 터미널에서 스크립트를 실행하여 3D 목표를 직접 입력합니다.
+
+```bash
+# 인터랙티브 모드
+python3 /home/jo/clearpath_ws/clearpath/goal_pose_pub.py
+> 5.0 3.0 0.0 90      # x=5, y=3, z=0, yaw=90° (반시계 90°)
+> 10.0 -2.0 1.5 -45   # yaw=-45° (시계방향 45°)
+> q                    # 종료
+
+# 원샷 모드
+python3 /home/jo/clearpath_ws/clearpath/goal_pose_pub.py --once 5.0 3.0 0.0 90
+```
+
+RViz에 빨간 화살표로 목표 위치/방향이 표시됩니다.
 
 ## 아키텍처
 
