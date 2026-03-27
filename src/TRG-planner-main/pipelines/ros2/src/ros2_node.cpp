@@ -4,7 +4,7 @@ ROS2Node::ROS2Node(const rclcpp::Node::SharedPtr &node) : n_(node) {
   getParams(n_);
 
   tf_cache.tfBuffer   = std::make_shared<tf2_ros::Buffer>(n_->get_clock());
-  tf_cache.tfListener = std::make_shared<tf2_ros::TransformListener>(*tf_cache.tfBuffer);
+  tf_cache.tfListener = std::make_shared<tf2_ros::TransformListener>(*tf_cache.tfBuffer, n_);
 
   sub.ego_pose_ = n_->create_subscription<ROS2Types::Pose>(
       topics_["egoPose"], qos.for_reli, std::bind(&ROS2Node::cbPose, this, std::placeholders::_1));
@@ -12,7 +12,7 @@ ROS2Node::ROS2Node(const rclcpp::Node::SharedPtr &node) : n_(node) {
       topics_["egoOdom"], qos.for_reli, std::bind(&ROS2Node::cbOdom, this, std::placeholders::_1));
   sub.obs_cloud_ = n_->create_subscription<ROS2Types::PointCloud>(
       topics_["obsCloud"],
-      qos.for_reli,
+      qos.for_sensor,
       std::bind(&ROS2Node::cbCloud, this, std::placeholders::_1));
   sub.goal_ = n_->create_subscription<ROS2Types::Pose>(
       topics_["goal"], qos.for_reli, std::bind(&ROS2Node::cbGoal, this, std::placeholders::_1));

@@ -43,8 +43,9 @@ class ROS2Node : public TRGPlanner {
     rclcpp::Publisher<ROS2Types::FloatArray>::SharedPtr  path_info_;
   } debug;
   struct QoS {
-    rclcpp::QoS for_reli = rclcpp::QoS(rclcpp::KeepLast(10)).reliable();
-    rclcpp::QoS for_viz  = rclcpp::QoS(rclcpp::KeepLast(10)).reliable();
+    rclcpp::QoS for_reli   = rclcpp::QoS(rclcpp::KeepLast(10)).reliable();
+    rclcpp::QoS for_sensor = rclcpp::SensorDataQoS();
+    rclcpp::QoS for_viz    = rclcpp::QoS(rclcpp::KeepLast(10)).reliable();
   } qos;
 
   //// Parameters

@@ -1,0 +1,22 @@
+trg_ros2_node:
+  ros__parameters:
+    ros2:
+      isDebug: true
+      frameId: "odom"
+      publishRate: 10.0
+      debugRate: 1.0
+      topic:
+        input:
+          egoPose: "/go2_0000/ground_truth/pose"
+          egoOdom: "/go2_0000/ground_truth/odom"
+          obsCloud: "/go2_0000/lidar3d_0/points"
+          goal: "/goal_pose"
+        output:
+          preMap: "/trg/output/preMap"
+          goal: "/trg/output/goal"
+          path: "/trg/output/path"
+        debug:
+          globalTRG: "/trg/debug/globalTRG"
+          localTRG: "/trg/debug/localTRG"
+          obsMap: "/trg/debug/obsMap"
+          pathInfo: "/trg/debug/pathInfo"

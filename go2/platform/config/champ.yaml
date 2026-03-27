@@ -1,0 +1,22 @@
+/**:
+  ros__parameters:
+    use_sim_time: true
+    gazebo: true
+    publish_foot_contacts: true
+    publish_joint_states: true
+    publish_joint_control: true
+    joint_controller_topic: "joint_trajectory_controller/joint_trajectory"
+    loop_rate: 200.0
+    urdf: ""
+    gait:
+      pantograph_leg: false
+      max_linear_velocity_x: 0.8
+      max_linear_velocity_y: 0.5
+      max_angular_velocity_z: 1.0
+      com_x_translation: 0.0
+      swing_height: 0.04
+      stance_depth: 0.0
+      stance_duration: 0.25
+      nominal_height: 0.3
+      knee_orientation: ">>"
+
