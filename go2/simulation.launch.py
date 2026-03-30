@@ -32,13 +32,16 @@ ARGUMENTS = [
     DeclareLaunchArgument('world', default_value='warehouse'),
     DeclareLaunchArgument('x',   default_value='0.0'),
     DeclareLaunchArgument('y',   default_value='0.0'),
-    DeclareLaunchArgument('z',   default_value='0.5'),
+    DeclareLaunchArgument('z',   default_value='0.40'),
     DeclareLaunchArgument('yaw', default_value='0.0'),
+    DeclareLaunchArgument('controller', default_value='champ',
+                          description='Locomotion controller: champ or rl'),
 ]
 
 
 def launch_setup(context, *args, **kwargs):
     world = LaunchConfiguration('world').perform(context)
+    controller = LaunchConfiguration('controller').perform(context)
 
     pkg_clearpath_gz = get_package_share_directory('clearpath_gz')
     pkg_ros_gz_sim   = get_package_share_directory('ros_gz_sim')
@@ -87,7 +90,12 @@ def launch_setup(context, *args, **kwargs):
 
     # ── Go2 URDF processing ────────────────────────────────────────────
     urdf_path = os.path.join(GO2_DIR, 'robot.urdf.xacro')
-    robot_description = xacro.process_file(urdf_path, mappings={'is_sim': 'true'}).toxml()
+    if controller == 'rl':
+        ctrl_cfg = os.path.join(GO2_DIR, 'platform', 'config', 'control_rl.yaml')
+    else:
+        ctrl_cfg = os.path.join(GO2_DIR, 'platform', 'config', 'control.yaml')
+    robot_description = xacro.process_file(
+        urdf_path, mappings={'is_sim': 'true', 'controller_config': ctrl_cfg}).toxml()
 
     # Robot state publisher
     # joint_state_broadcaster publishes to root /joint_states (controller_manager
@@ -159,6 +167,21 @@ def launch_setup(context, *args, **kwargs):
         output='screen',
     )
 
+    # IMU bridge (Ignition → ROS) — needed by RL controller
+    imu_bridge = Node(
+        package='ros_gz_bridge',
+        executable='parameter_bridge',
+        name='imu_bridge',
+        namespace='go2_0000',
+        arguments=[
+            '/go2_0000/imu/data@sensor_msgs/msg/Imu[ignition.msgs.IMU',
+        ],
+        remappings=[
+            ('/go2_0000/imu/data', 'imu/data'),
+        ],
+        output='screen',
+    )
+
     # ── Controller spawners ─────────────────────────────────────────────
     joint_state_broadcaster_spawner = Node(
         package='controller_manager',
@@ -167,10 +190,10 @@ def launch_setup(context, *args, **kwargs):
         output='screen',
     )
 
-    joint_trajectory_controller_spawner = Node(
+    forward_effort_controller_spawner = Node(
         package='controller_manager',
         executable='spawner',
-        arguments=['joint_trajectory_controller'],
+        arguments=['forward_effort_controller'],
         output='screen',
     )
 
@@ -190,25 +213,42 @@ def launch_setup(context, *args, **kwargs):
         output='screen',
     )
 
-    # ── CHAMP quadruped controller ──────────────────────────────────────
-    champ_controller = Node(
-        package='champ_base',
-        executable='quadruped_controller_node',
-        name='quadruped_controller_node',
-        namespace='go2_0000',
-        parameters=[
-            os.path.join(GO2_DIR, 'platform', 'config', 'champ.yaml'),
-            os.path.join(GO2_DIR, 'platform', 'config', 'links.yaml'),
-            os.path.join(GO2_DIR, 'platform', 'config', 'joints.yaml'),
-            {'use_sim_time': True, 'urdf': robot_description},
-        ],
-        remappings=[
-            ('cmd_vel/smooth', 'cmd_vel'),
-            ('joint_trajectory_controller/joint_trajectory',
-             '/joint_trajectory_controller/joint_trajectory'),
-        ],
-        output='screen',
-    )
+    # ── Locomotion controller (CHAMP or RL) ─────────────────────────────
+    if controller == 'rl':
+        locomotion_node = Node(
+            package='go2_rl_controller',
+            executable='rl_inference_node',
+            name='rl_inference_node',
+            namespace='go2_0000',
+            parameters=[{
+                'use_sim_time': True,
+                'body_model_path': '/home/jo/clearpath_ws/src/go2_rl_controller/models/body_latest.jit',
+                'adaptation_model_path': '/home/jo/clearpath_ws/src/go2_rl_controller/models/adaptation_module_latest.jit',
+            }],
+            remappings=[
+                ('/tf', '/go2_0000/tf'),
+            ],
+            output='screen',
+        )
+    else:
+        locomotion_node = Node(
+            package='champ_base',
+            executable='quadruped_controller_node',
+            name='quadruped_controller_node',
+            namespace='go2_0000',
+            parameters=[
+                os.path.join(GO2_DIR, 'platform', 'config', 'champ.yaml'),
+                os.path.join(GO2_DIR, 'platform', 'config', 'links.yaml'),
+                os.path.join(GO2_DIR, 'platform', 'config', 'joints.yaml'),
+                {'use_sim_time': True, 'urdf': robot_description},
+            ],
+            remappings=[
+                ('cmd_vel/smooth', 'cmd_vel'),
+                ('joint_trajectory_controller/joint_trajectory',
+                 '/joint_trajectory_controller/joint_trajectory'),
+            ],
+            output='screen',
+        )
 
     # ── Static TF: vehicle frame for local planner ───────────────────────
     vehicle_frame_bridge = Node(
@@ -249,11 +289,12 @@ def launch_setup(context, *args, **kwargs):
         spawn_robot,
         odom_bridge,
         lidar_bridge,
+        imu_bridge,
         vehicle_frame_bridge,
         joint_state_broadcaster_spawner,
-        joint_trajectory_controller_spawner,
+        forward_effort_controller_spawner,
         ekf_node,
-        champ_controller,
+        locomotion_node,
         rviz,
     ]
 

@@ -2,6 +2,7 @@
 <robot name="go2" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <xacro:arg name="is_sim" default="true"/>
+  <xacro:arg name="controller_config" default="/home/jo/clearpath_ws/go2/platform/config/control.yaml"/>
 
   <!-- Go2 description xacro files -->
   <xacro:include filename="$(find go2_description)/xacro/const.xacro"/>
@@ -266,33 +267,36 @@
     <hardware>
       <plugin>ign_ros2_control/IgnitionSystem</plugin>
     </hardware>
-    <xacro:macro name="joint_interface" params="joint_name">
+    <xacro:macro name="joint_interface" params="joint_name initial_pos:=0.0">
       <joint name="${joint_name}">
         <command_interface name="effort"/>
-        <state_interface name="position"/>
+        <state_interface name="position">
+          <param name="initial_value">${initial_pos}</param>
+        </state_interface>
         <state_interface name="velocity"/>
         <state_interface name="effort"/>
       </joint>
     </xacro:macro>
-    <xacro:joint_interface joint_name="FR_hip_joint"/>
-    <xacro:joint_interface joint_name="FR_thigh_joint"/>
-    <xacro:joint_interface joint_name="FR_calf_joint"/>
-    <xacro:joint_interface joint_name="FL_hip_joint"/>
-    <xacro:joint_interface joint_name="FL_thigh_joint"/>
-    <xacro:joint_interface joint_name="FL_calf_joint"/>
-    <xacro:joint_interface joint_name="RR_hip_joint"/>
-    <xacro:joint_interface joint_name="RR_thigh_joint"/>
-    <xacro:joint_interface joint_name="RR_calf_joint"/>
-    <xacro:joint_interface joint_name="RL_hip_joint"/>
-    <xacro:joint_interface joint_name="RL_thigh_joint"/>
-    <xacro:joint_interface joint_name="RL_calf_joint"/>
+    <!-- Standing pose: FR/FL hip=±0.1, thigh=0.8, calf=-1.5; RR/RL hip=±0.1, thigh=1.0, calf=-1.5 -->
+    <xacro:joint_interface joint_name="FR_hip_joint"   initial_pos="-0.1"/>
+    <xacro:joint_interface joint_name="FR_thigh_joint" initial_pos="0.8"/>
+    <xacro:joint_interface joint_name="FR_calf_joint"  initial_pos="-1.5"/>
+    <xacro:joint_interface joint_name="FL_hip_joint"   initial_pos="0.1"/>
+    <xacro:joint_interface joint_name="FL_thigh_joint" initial_pos="0.8"/>
+    <xacro:joint_interface joint_name="FL_calf_joint"  initial_pos="-1.5"/>
+    <xacro:joint_interface joint_name="RR_hip_joint"   initial_pos="-0.1"/>
+    <xacro:joint_interface joint_name="RR_thigh_joint" initial_pos="1.0"/>
+    <xacro:joint_interface joint_name="RR_calf_joint"  initial_pos="-1.5"/>
+    <xacro:joint_interface joint_name="RL_hip_joint"   initial_pos="0.1"/>
+    <xacro:joint_interface joint_name="RL_thigh_joint" initial_pos="1.0"/>
+    <xacro:joint_interface joint_name="RL_calf_joint"  initial_pos="-1.5"/>
   </ros2_control>
 
   <!-- Ignition ros2_control plugin -->
   <gazebo>
     <plugin filename="libign_ros2_control-system.so"
             name="ign_ros2_control::IgnitionROS2ControlPlugin">
-      <parameters>/home/jo/clearpath_ws/go2/platform/config/control.yaml</parameters>
+      <parameters>$(arg controller_config)</parameters>
       <robot_param_node>go2_0000/robot_state_publisher</robot_param_node>
     </plugin>
   </gazebo>
