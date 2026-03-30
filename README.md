@@ -2,6 +2,31 @@
 
 ROS 2 Humble + Ignition Fortress 환경에서 Clearpath Husky A200 시뮬레이션 및 TRG-Planner (global path planner) 통합 워크스페이스입니다.
 
+## 환경 설치 (신규 설치 / LLM Agent)
+
+> 이 저장소를 처음 클론하거나, LLM Agent가 자동으로 환경을 구성할 경우 아래 파일을 참고하세요.
+
+**[AGENT_SETUP.md](AGENT_SETUP.md)** — Ubuntu 22.04 + ROS 2 Humble 환경을 처음부터 재현하는 단계별 설치 가이드.
+
+포함 내용:
+- ROS 2 Humble / Ignition Fortress 설치
+- 필수 ROS 패키지 목록 (`apt install`)
+- 저장소 클론 및 서브모듈 초기화
+- VCS 의존성 가져오기 (`vcs import`)
+- TRG-Planner C++ 코어 라이브러리 빌드 및 시스템 설치 (`sudo make cppinstall`)
+- COLCON_IGNORE 설정 (빌드 충돌 방지)
+- 다른 경로에 클론 시 하드코딩 경로 일괄 치환 방법
+- `colcon build` 전체 빌드 커맨드
+
+```bash
+# 요약: 신규 설치 흐름
+git clone --recurse-submodules https://github.com/johyunyoung/multi-floor-path-planner.git ~/clearpath_ws
+cd ~/clearpath_ws
+# → AGENT_SETUP.md의 Step 0~12를 순서대로 실행
+```
+
+---
+
 ## 환경
 
 | 항목 | 버전 |
