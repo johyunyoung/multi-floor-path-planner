@@ -12,7 +12,7 @@ Follow every step in order. Do not skip steps.
 | 0–2 | System packages + ROS 2 + Ignition install | None |
 | 3 | `apt install` ROS packages | ROS apt repo registered |
 | 4 | `git clone --recurse-submodules` | None |
-| 5 | `vcs import` (Clearpath source packages) | Clone complete |
+| 5 | `vcs import` (Clearpath + CHAMP source packages) | Clone complete |
 | 6 | `sudo make cppinstall` (TRG C++ core → `/usr/local`) | PCL, Eigen3, OpenCV installed (Step 0) |
 | 7 | Create COLCON_IGNORE files (5 files) | Clone complete |
 | 8 | Path remapping (only if not `/home/jo/clearpath_ws`) | Clone complete |
@@ -143,9 +143,9 @@ cd "$WORKSPACE_ROOT"
 
 ## Step 5 — Import VCS Dependencies
 
-> **Why this step:** `src/clearpath_common`, `src/clearpath_config`, `src/clearpath_msgs` are
-> not in the git repo. They must be cloned from Clearpath's GitHub before rosdep and colcon can
-> find them.
+> **Why this step:** Several packages are not bundled in the git repo and must be cloned separately.
+> This includes the official Clearpath packages and the CHAMP quadruped controller which is
+> required by `go2/simulation.launch.py` (default locomotion controller: `champ_base`).
 
 ```bash
 cd "$WORKSPACE_ROOT"
@@ -162,12 +162,17 @@ The following repositories are imported:
 | `src/clearpath_common` | https://github.com/clearpathrobotics/clearpath_common.git | humble |
 | `src/clearpath_config` | https://github.com/clearpathrobotics/clearpath_config.git | humble |
 | `src/clearpath_msgs` | https://github.com/clearpathrobotics/clearpath_msgs.git | humble |
+| `src/champ` | https://github.com/chvmp/champ.git | ros2 |
+
+> **Note:** `src/champ` provides the `champ_base` package used by `go2/simulation.launch.py`
+> as the default locomotion controller (`controller:=champ`).
 
 Verify:
 ```bash
 ls "$WORKSPACE_ROOT/src/clearpath_common"   # must exist
 ls "$WORKSPACE_ROOT/src/clearpath_config"   # must exist
 ls "$WORKSPACE_ROOT/src/clearpath_msgs"     # must exist
+ls "$WORKSPACE_ROOT/src/champ"             # must exist
 ```
 
 ---
