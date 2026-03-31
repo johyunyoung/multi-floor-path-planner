@@ -259,6 +259,9 @@ FILES=(
     "$NEW_PATH/clearpath/platform/launch/platform-service.launch.py"
     "$NEW_PATH/clearpath/worlds/simple_multi_floor.sdf"
     "$NEW_PATH/clearpath/goal_pose_pub.py"
+    "$NEW_PATH/go2/simulation.launch.py"
+    "$NEW_PATH/go2/trg_navigation.launch.py"
+    "$NEW_PATH/go2/robot.urdf.xacro"
 )
 
 for f in "${FILES[@]}"; do
@@ -268,7 +271,7 @@ done
 
 Verify no old paths remain:
 ```bash
-grep -r "$OLD_PATH" "$NEW_PATH/clearpath/" --include="*.py" --include="*.sdf" -l
+grep -r "$OLD_PATH" "$NEW_PATH/clearpath/" "$NEW_PATH/go2/" --include="*.py" --include="*.sdf" --include="*.xacro" -l
 # Expected: no output (empty)
 ```
 
@@ -342,8 +345,8 @@ ros2 pkg list | grep -E "clearpath|trg_planner|local_planner"
 #                      trg_planner_ros, local_planner
 
 # 4. Confirm no stale hardcoded paths (if installed at non-default location)
-grep -r "/home/jo/clearpath_ws" "$WORKSPACE_ROOT/clearpath/" \
-    --include="*.py" --include="*.sdf" -l
+grep -r "/home/jo/clearpath_ws" "$WORKSPACE_ROOT/clearpath/" "$WORKSPACE_ROOT/go2/" \
+    --include="*.py" --include="*.sdf" --include="*.xacro" -l
 # Expected: no output if path remapping was done correctly
 ```
 
