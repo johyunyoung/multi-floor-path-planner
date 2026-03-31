@@ -5,6 +5,28 @@ Follow every step in order. Do not skip steps.
 
 ---
 
+## Quick Reference: Build Order
+
+| Step | Action | Prerequisite |
+|------|--------|-------------|
+| 0–2 | System packages + ROS 2 + Ignition install | None |
+| 3 | `apt install` ROS packages | ROS apt repo registered |
+| 4 | `git clone --recurse-submodules` | None |
+| 5 | `vcs import` (Clearpath source packages) | Clone complete |
+| 6 | `sudo make cppinstall` (TRG C++ core → `/usr/local`) | PCL, Eigen3, OpenCV installed (Step 0) |
+| 7 | Create COLCON_IGNORE files (5 files) | Clone complete |
+| 8 | Path remapping (only if not `/home/jo/clearpath_ws`) | Clone complete |
+| 9 | `rosdep install` | Step 5 complete |
+| 10 | `colcon build` | Steps 6, 7, 9 all complete |
+| 11 | Verify | Step 10 complete |
+| 12 | Run simulation | Step 11 passed |
+
+> **Critical order:** Step 6 must come before Step 10. `colcon build` links against
+> `libtrg_planner_core.a` which is only available after `sudo make cppinstall`.
+> Step 7 must also come before Step 10 to avoid duplicate `package.xml` conflicts.
+
+---
+
 ## Target Environment
 
 | Item | Version |
@@ -25,7 +47,7 @@ Follow every step in order. Do not skip steps.
 # Verify Ubuntu 22.04
 lsb_release -a
 
-# Install build essentials
+# Install build essentials and C++ dependencies required by TRG core
 sudo apt update
 sudo apt install -y git curl wget build-essential cmake \
     gcc g++ libeigen3-dev python3-pip python3-dev \
@@ -121,7 +143,9 @@ cd "$WORKSPACE_ROOT"
 
 ## Step 5 — Import VCS Dependencies
 
-This pulls the official Clearpath ROS packages into `src/`.
+> **Why this step:** `src/clearpath_common`, `src/clearpath_config`, `src/clearpath_msgs` are
+> not in the git repo. They must be cloned from Clearpath's GitHub before rosdep and colcon can
+> find them.
 
 ```bash
 cd "$WORKSPACE_ROOT"
@@ -139,12 +163,20 @@ The following repositories are imported:
 | `src/clearpath_config` | https://github.com/clearpathrobotics/clearpath_config.git | humble |
 | `src/clearpath_msgs` | https://github.com/clearpathrobotics/clearpath_msgs.git | humble |
 
+Verify:
+```bash
+ls "$WORKSPACE_ROOT/src/clearpath_common"   # must exist
+ls "$WORKSPACE_ROOT/src/clearpath_config"   # must exist
+ls "$WORKSPACE_ROOT/src/clearpath_msgs"     # must exist
+```
+
 ---
 
 ## Step 6 — Build and Install the TRG-Planner C++ Core Library
 
-The ROS2 pipeline (`trg_planner_ros`) links against a static library `libtrg_planner_core.a`
-that must be installed to `/usr/local/lib/` before colcon can build it.
+> **Why this step:** `trg_planner_ros` (the ROS2 node) links against the static library
+> `libtrg_planner_core.a` at compile time. This library must be installed to `/usr/local/lib/`
+> **before** running `colcon build`, or the build will fail with a missing `trg_planner` CMake target.
 
 ```bash
 cd "$WORKSPACE_ROOT/src/TRG-planner-main"
@@ -161,17 +193,31 @@ What `sudo make cppinstall` does internally:
    - Installs headers → `/usr/local/include/trg_planner/`
    - Installs CMake export → `/usr/local/lib/cmake/trg_planner/`
 
-Verify the install succeeded:
+Verify the install succeeded (all three must exist):
 ```bash
-ls /usr/local/lib/libtrg_planner_core.a      # must exist
-ls /usr/local/lib/cmake/trg_planner/         # must exist
+ls /usr/local/lib/libtrg_planner_core.a
+ls /usr/local/lib/cmake/trg_planner/trg_plannerConfig.cmake
+ls /usr/local/include/trg_planner/
 ```
 
 ---
 
 ## Step 7 — Ensure COLCON_IGNORE Files Exist
 
-These files prevent colcon from trying to build directories that have conflicting or irrelevant `package.xml` files.
+> **Why this step:** The TRG repository contains multiple `package.xml` files at different levels
+> (ros1 pipeline, ros2 pipeline, cpp/examples, python bindings). Without COLCON_IGNORE markers,
+> colcon will detect duplicate package names and fail.
+>
+> colcon builds `trg_planner_ros` from the **parent** `pipelines/` directory
+> (i.e., `src/TRG-planner-main/pipelines/package.xml`), NOT from `pipelines/ros2/`.
+> The `ros1/` and `ros2/` subdirectory COLCON_IGNORE files prevent double-registration.
+>
+> Package path as seen by colcon:
+> ```
+> trg_planner_ros  →  src/TRG-planner-main/pipelines/   (parent package.xml)
+>   pipelines/ros1/  →  COLCON_IGNORE  (skipped)
+>   pipelines/ros2/  →  COLCON_IGNORE  (skipped)
+> ```
 
 ```bash
 cd "$WORKSPACE_ROOT/src/TRG-planner-main"
@@ -180,18 +226,21 @@ touch pipelines/ros1/COLCON_IGNORE
 touch pipelines/ros2/COLCON_IGNORE
 touch cpp/examples/COLCON_IGNORE
 touch python/COLCON_IGNORE
+touch cpp/trg_planner/COLCON_IGNORE
 ```
 
-Also ignore the unitree_ros submodule:
+Also ignore the unitree_ros submodule (ROS1-only packages that conflict with Humble):
 ```bash
 touch "$WORKSPACE_ROOT/src/unitree_ros/COLCON_IGNORE"
 ```
 
-> **Why:** The TRG repo contains multiple `package.xml` files (ros1, ros2 pipelines, examples).
-> Without COLCON_IGNORE, colcon will find duplicates and fail.
-> The actual ROS2 package to build is `src/TRG-planner-main/pipelines/ros2/`
-> (package name: `trg_planner_ros`), but it has its own COLCON_IGNORE — colcon discovers it
-> via the parent `src/TRG-planner-main/` which has the top-level `package.xml`.
+Verify colcon sees exactly one `trg_planner_ros` entry:
+```bash
+cd "$WORKSPACE_ROOT"
+source /opt/ros/humble/setup.bash
+colcon list | grep trg
+# Expected: trg_planner_ros    src/TRG-planner-main/pipelines    (ros.ament_cmake)
+```
 
 ---
 
@@ -217,14 +266,21 @@ for f in "${FILES[@]}"; do
 done
 ```
 
-Also update the mesh URI in any custom world SDF files under `clearpath/worlds/`.
+Verify no old paths remain:
+```bash
+grep -r "$OLD_PATH" "$NEW_PATH/clearpath/" --include="*.py" --include="*.sdf" -l
+# Expected: no output (empty)
+```
 
 ---
 
 ## Step 9 — Initialize rosdep and Install ROS Dependencies
 
+> **Why this step:** resolves ROS package dependencies declared in `package.xml` files
+> under `src/` (including the Clearpath packages imported in Step 5).
+
 ```bash
-sudo rosdep init    # skip if already initialized
+sudo rosdep init    # skip if already initialized (error is safe to ignore)
 rosdep update
 
 cd "$WORKSPACE_ROOT"
@@ -250,14 +306,16 @@ source install/setup.bash
 > **Note:** `clearpath_generator_gz` is skipped intentionally. The manual configuration files
 > (`platform-service.launch.py`, `robot.urdf.xacro`) must NOT be overwritten by the generator.
 
-To rebuild only the TRG-Planner ROS package:
+To rebuild individual packages:
 ```bash
+# TRG-Planner ROS node only
 colcon build --packages-select trg_planner_ros --cmake-args -DCMAKE_BUILD_TYPE=Release
-```
 
-To rebuild only the local planner:
-```bash
+# Local Planner only
 colcon build --packages-select local_planner --cmake-args -DCMAKE_BUILD_TYPE=Release
+
+# Clearpath description packages only
+colcon build --packages-up-to clearpath_platform_description
 ```
 
 ---
@@ -265,16 +323,28 @@ colcon build --packages-select local_planner --cmake-args -DCMAKE_BUILD_TYPE=Rel
 ## Step 11 — Verify the Build
 
 ```bash
-# Check all expected packages are built
-ros2 pkg list | grep -E "trg_planner|local_planner|clearpath"
+source "$WORKSPACE_ROOT/install/setup.bash"
 
-# Expected output includes:
-# trg_planner_ros
-# local_planner
-# clearpath_control
-# clearpath_description
-# clearpath_msgs
-# (and others)
+# 1. TRG node executable
+ros2 pkg executables trg_planner_ros
+# Expected: trg_planner_ros trg_ros2_node
+
+# 2. Local planner executables
+ros2 pkg executables local_planner
+# Expected:
+#   local_planner localPlanner
+#   local_planner pathFollower
+#   local_planner waypointExtractor
+
+# 3. Clearpath packages
+ros2 pkg list | grep -E "clearpath|trg_planner|local_planner"
+# Expected to include: clearpath_control, clearpath_description, clearpath_msgs,
+#                      trg_planner_ros, local_planner
+
+# 4. Confirm no stale hardcoded paths (if installed at non-default location)
+grep -r "/home/jo/clearpath_ws" "$WORKSPACE_ROOT/clearpath/" \
+    --include="*.py" --include="*.sdf" -l
+# Expected: no output if path remapping was done correctly
 ```
 
 ---
@@ -321,15 +391,17 @@ clearpath_ws/
 │       └── meshes/floor.dae
 │
 └── src/
-    ├── clearpath_common/               # Official Clearpath packages (vcs import)
-    ├── clearpath_config/               # Official Clearpath config parser
-    ├── clearpath_msgs/                 # Official Clearpath messages
-    ├── TRG-planner-main/              # Global path planner (C++ core + ROS2 pipeline)
-    │   ├── Makefile                    # `sudo make cppinstall` builds C++ core
-    │   ├── cpp/trg_planner/           # C++ static library source
+    ├── clearpath_common/               # Official Clearpath packages (vcs import, Step 5)
+    ├── clearpath_config/               # Official Clearpath config parser (vcs import, Step 5)
+    ├── clearpath_msgs/                 # Official Clearpath messages (vcs import, Step 5)
+    ├── TRG-planner-main/              # Global path planner
+    │   ├── Makefile                    # sudo make cppinstall (Step 6)
+    │   ├── cpp/trg_planner/           # C++ static library source (COLCON_IGNORE'd)
     │   ├── config/husky_warehouse.yaml # TRG algorithm parameters for Husky
-    │   └── pipelines/ros2/            # ROS2 node (trg_planner_ros package)
-    │       └── config/husky_params.yaml  # Topic/frame mappings
+    │   └── pipelines/                 # colcon package root (trg_planner_ros)
+    │       ├── package.xml            # ← colcon reads THIS (not ros2/package.xml)
+    │       ├── ros1/  (COLCON_IGNORE) # skipped
+    │       └── ros2/  (COLCON_IGNORE) # skipped; source used via parent CMakeLists
     └── local_planner/                 # Waypoint extraction + local planner + path follower
 ```
 
